@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cronômetro App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="timer" id="display">00:00.00</div>
+      <div class="buttons">
+        <button class="btn" onclick="startStop()">▶︎</button>
+        <button class="btn" onclick="pause()">⏸︎</button>
+        <button class="btn" onclick="lap()">⚑</button>
+        <button class="btn" onclick="reset()">⟲</button>
+      </div>
+    </div>
+    <div class="right">
+      <div class="laps" id="laps"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
