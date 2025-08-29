@@ -71,14 +71,14 @@ export class Timer {
 
 
   lap() {
-    if (!this.running || !this.lapsDiv) return;
-
+    if (!this.lapsDiv) return;
     this.lapCount++;
     const lapElement = document.createElement("div");
     lapElement.className = "lap";
     lapElement.innerText = `⚑ ${this.lapCount}: ${this.display.innerText}`;
     this.lapsDiv.prepend(lapElement);
   }
+
 
   // Método para atualizar o tempo quando o usuário altera o input
   updateTime(newTotalSeconds) {
