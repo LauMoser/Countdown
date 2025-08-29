@@ -60,13 +60,12 @@ export class Stopwatch {
   }
 
   lap() {
-    if (this.running) {
-      this.lapCount++;
-      const lapTime = this.display.innerText;
-      const lapElement = document.createElement("div");
-      lapElement.className = "lap";
-      lapElement.innerText = "⚑ " + this.lapCount + ": " + lapTime;
-      this.laps.prepend(lapElement);
-    }
+    this.lapCount++;
+    const lapTime = this.display.innerText;
+    const lapElement = document.createElement("div");
+    lapElement.className = "lap";
+    lapElement.innerText = "⚑ " + this.lapCount + ": " + lapTime;
+    this.laps.prepend(lapElement);
   }
 }
+

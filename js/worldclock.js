@@ -1,28 +1,50 @@
 export class WorldClock {
   constructor(display) {
     this.display = display;
-    this.timezone = "America/Sao_Paulo"; // fuso de Brasília
+    this.timezone = "America/Sao_Paulo";
     this.interval = null;
 
-    alert("Exibindo o horário do fuso de Brasília.");
+    // Mostra a hora local imediatamente
+    const now = new Date();
+    this.display.innerText = now.toLocaleTimeString("pt-BR");
 
-    // Atualiza a hora imediatamente e depois a cada segundo
-    this.updateDisplay();
-    this.interval = setInterval(() => this.updateDisplay(), 1000);
+    // Inicia a atualização do display local a cada segundo
+    this.interval = setInterval(() => {
+      const now = new Date();
+      this.display.innerText = now.toLocaleTimeString("pt-BR");
+    }, 1000);
+
+    // Tenta sincronizar com API em background
+    this.syncWithAPI();
   }
 
-  async updateDisplay() {
+  async syncWithAPI() {
     try {
       const response = await fetch(`https://worldtimeapi.org/api/timezone/${this.timezone}`);
       const data = await response.json();
-      const time = new Date(data.datetime);
-      this.display.innerText = time.toLocaleTimeString("pt-BR");
+      const apiTime = new Date(data.datetime);
+
+      // Atualiza a hora exibida para Brasília
+      clearInterval(this.interval); // remove o update local
+      this.display.innerText = apiTime.toLocaleTimeString("pt-BR");
+
+      // Atualiza de segundo em segundo com a API
+      this.interval = setInterval(async () => {
+        try {
+          const res = await fetch(`https://worldtimeapi.org/api/timezone/${this.timezone}`);
+          const d = await res.json();
+          const t = new Date(d.datetime);
+          this.display.innerText = t.toLocaleTimeString("pt-BR");
+        } catch {
+          // Se falhar, mantém a última hora conhecida
+        }
+      }, 1000);
+
     } catch {
-      this.display.innerText = "Erro ao carregar horário";
+      // Se falhar, continua mostrando hora local e evita erro
     }
   }
 
-  // Botões não fazem nada
   start() {}
   pause() {}
   reset() {}

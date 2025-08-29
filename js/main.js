@@ -94,6 +94,11 @@ timerInput.addEventListener("input", () => {
 
 // Funções globais para os botões
 function action(type) {
+  if (!mode) {
+    alert("Selecione um dos modos primeiro: Cronômetro, Timer ou Relógio.");
+    return;
+  }
+
   if (!instance) return;
 
   if (type === "start") instance.start();
@@ -101,6 +106,7 @@ function action(type) {
   if (type === "reset") instance.reset();
   if (type === "lap") instance.lap();
 }
+
 
 // Torna funções acessíveis no HTML
 window.setMode = setMode;
