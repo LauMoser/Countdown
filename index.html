@@ -2,10 +2,11 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Cronômetro App</title>
+  <title>Relógios App</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="container">
     <div class="box">
       <div class="left">
@@ -14,21 +15,29 @@
       <div class="right">
         <div class="laps" id="laps"></div>
       </div>
-  </div>
+    </div>
+
     <div class="buttons">
-      <button class="btn" onclick="startStop()">▶︎</button>
-      <button class="btn" onclick="pause()">⏸︎</button>
-      <button class="btn" onclick="lap()">⚑</button>
-      <button class="btn" onclick="reset()">⟲</button>
+      <button class="btn" onclick="action('start')">▶︎</button>
+      <button class="btn" onclick="action('pause')">⏸︎</button>
+      <button class="btn" onclick="action('lap')">⚑</button>
+      <button class="btn" onclick="action('reset')">⟲</button>
+    </div>
+
+    <!-- Input do timer -->
+    <div id="timer-input-box" style="display:none;">
+      <label for="timer-input">Defina o tempo (HH:MM:SS):</label>
+      <input type="text" id="timer-input" value="00:01:00" pattern="\d{2}:\d{2}:\d{2}">
     </div>
   </div>
-  
+
   <div class="options">
-    <div class="option-box">Cronômetro</div>
-    <div class="option-box">Timer</div>
-    <div class="option-box">Relógio Mundial</div>
+    <div class="option-box" onclick="setMode('stopwatch')">Cronômetro</div>
+    <div class="option-box" onclick="setMode('timer')">Timer</div>
+    <div class="option-box" onclick="setMode('worldclock')">Relógio</div>
   </div>
 
-  <script src="script.js"></script>
+  <script type="module" src="js/main.js"></script>
+
 </body>
 </html>
