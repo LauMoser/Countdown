@@ -6,7 +6,7 @@ export class Timer {
     this.alarm = alarm;
     this.lapsDiv = lapsDiv;
 
-    this.initialTime = totalSeconds;  // tempo definido pelo usuário
+    this.initialTime = totalSeconds;  
     this.time = totalSeconds; 
     this.interval = null;
     this.running = false;
@@ -23,8 +23,8 @@ export class Timer {
   }
 
   start() {
-    if (this.running) return; // impede múltiplos intervalos
-    if (this.time <= 0) return; // não inicia se o tempo acabou
+    if (this.running) return; 
+    if (this.time <= 0) return; 
 
     this.running = true;
     this.interval = setInterval(() => {
@@ -59,16 +59,15 @@ export class Timer {
  reset() {
   clearInterval(this.interval);
   this.running = false;
-  this.lapCount = 0;          // limpa contagem de laps
+  this.lapCount = 0;          
   this.time = this.initialTime;
   this.updateDisplay();
 
   this.playBtn.classList.remove("active");
   this.pauseBtn.classList.remove("active");
 
-  if (this.lapsDiv) this.lapsDiv.innerHTML = ""; // limpa laps
+  if (this.lapsDiv) this.lapsDiv.innerHTML = ""; 
 }
-
 
   lap() {
     if (!this.lapsDiv) return;
@@ -79,11 +78,9 @@ export class Timer {
     this.lapsDiv.prepend(lapElement);
   }
 
-
-  // Método para atualizar o tempo quando o usuário altera o input
   updateTime(newTotalSeconds) {
-    this.initialTime = newTotalSeconds; // redefine o tempo inicial
-    this.time = newTotalSeconds;        // atualiza o tempo atual
+    this.initialTime = newTotalSeconds; 
+    this.time = newTotalSeconds;       
     this.updateDisplay();
   }
 }

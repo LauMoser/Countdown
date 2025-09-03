@@ -14,7 +14,7 @@ const timerInput = document.getElementById("timer-input");
 
 const alarm = new Audio("alarme.mp4");
 
-// Converte HH:MM:SS em segundos
+
 function parseTimeInput(value) {
   const parts = value.split(":").map(Number);
   let h = parts[0] || 0;
@@ -23,7 +23,6 @@ function parseTimeInput(value) {
   return h * 3600 + m * 60 + s;
 }
 
-// Reseta visual dos botões
 function resetButtons() {
   const buttons = document.querySelectorAll(".buttons .btn");
   buttons.forEach(btn => {
@@ -33,15 +32,13 @@ function resetButtons() {
   });
 }
 
-// Seleção do modo
 function setMode(newMode) {
-  // Limpa instância anterior
   if (instance) {
     if (instance.interval) clearInterval(instance.interval);
     if (instance.reset) instance.reset();
   }
 
-  resetButtons(); // remove cinza dos botões
+  resetButtons(); 
   mode = newMode;
 
   if (mode === "stopwatch") {
@@ -68,7 +65,6 @@ function setMode(newMode) {
     timerInputBox.style.display = "none";
     instance = new WorldClock(display);
 
-    // Deixa os botões cinza e desativados
     const buttons = document.querySelectorAll(".buttons .btn");
     buttons.forEach(btn => {
       btn.style.backgroundColor = "#ccc";
@@ -78,7 +74,6 @@ function setMode(newMode) {
   }
 }
 
-// Atualiza Timer imediatamente ao alterar input
 timerInput.addEventListener("input", () => {
   if (mode !== "timer" || !instance) return;
 
@@ -92,7 +87,6 @@ timerInput.addEventListener("input", () => {
   instance.updateTime(totalSeconds);
 });
 
-// Funções globais para os botões
 function action(type) {
   if (!mode) {
     alert("Selecione um dos modos primeiro: Cronômetro, Timer ou Relógio.");
@@ -107,7 +101,5 @@ function action(type) {
   if (type === "lap") instance.lap();
 }
 
-
-// Torna funções acessíveis no HTML
 window.setMode = setMode;
 window.action = action;

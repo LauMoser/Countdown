@@ -68,4 +68,3 @@ export class Stopwatch {
     this.laps.prepend(lapElement);
   }
 }
-
