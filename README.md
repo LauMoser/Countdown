@@ -4,7 +4,7 @@ This project was developed with the goal of creating a countdown. It is being de
 # Integrantes:
 - Laura Melges Moser
 - Gustavo Munhoz Adario Jovelli
-- Seu nome
+- Arthur Formigoni Santos da Cruz
 
 # Stopwatch
   - Constructor Parameters:
@@ -48,3 +48,27 @@ This project was developed with the goal of creating a countdown. It is being de
       - Updates the display with the fetched time.
       - Restarts the interval to keep updating the display every second using API data.
       - If the API request fails, the clock keeps showing the local system time.
+
+ # Timer
+  - Constructor Parameters:
+    - **display** → Element where the countdown time will be shown.  
+    - **playBtn** → Button that starts the timer.  
+    - **pauseBtn** → Button that pauses the timer.  
+    - **totalSeconds** *(default = 60)* → Initial countdown time in seconds.  
+    - **alarm** → Optional audio element, played when time reaches zero.  
+    - **lapsDiv** → Container for lap records.  
+
+  - Properties:
+    - **initialTime** → Initial countdown time set by the user.  
+    - **time** → Current remaining time.  
+    - **interval** → Interval ID used by `setInterval`.  
+    - **running** → Indicates if the timer is active.  
+    - **lapCount** → Counter for the number of laps.  
+
+  - Methods:
+    - **updateDisplay()** → Updates the display in `hh:mm:ss` format.  
+    - **start()** → Starts/resumes the countdown. Stops automatically at `0`, plays alarm (if set), and shows `"Tempo esgotado!"`.  
+    - **pause()** → Pauses the countdown.  
+    - **reset()** → Resets the timer to its initial state and clears laps.  
+    - **lap()** → Records the current time as a lap, adding it to the laps container.  
+    - **updateTime(newTotalSeconds)** → Updates both the initial and current countdown time.  
